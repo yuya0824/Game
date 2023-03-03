@@ -16,18 +16,25 @@ public class split : MonoBehaviour
     void Start()
     {
         character.transform.localScale = new Vector3(miniSize, miniSize, 1.0f);
-    
     }
 
     // Update is called once per frame
     void Update()
     {
-
+ 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            if (player.transform.localScale == new Vector3(1, 1, 1))
+            {
+                miniSize = 0.8f;
+            }
             //character.transform.localScale *= new Vector2(0.8f, 0.8f);
-            Instantiate(character, new Vector3(player.transform.position.x, player.transform.position.y + 3, player.transform.position.z), Quaternion.identity);
+            GameObject obj = Instantiate(character, new Vector3(player.transform.position.x, player.transform.position.y + 3, player.transform.position.z), Quaternion.identity);
+            miniSize = miniSize * 0.9f;
+            obj.transform.localScale = new Vector3(miniSize, miniSize, 1.0f);
+            player.transform.localScale = new Vector3(miniSize, miniSize, 1.0f);
         }
 
+ 
     }
 }

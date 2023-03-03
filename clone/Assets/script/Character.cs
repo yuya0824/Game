@@ -7,6 +7,8 @@ public class Character : MonoBehaviour
     float speed = 5.0f;
     float jump = 0.0f;
 
+    public GameObject Water;
+
     // Update is called once per frame
     void Update()
     {
@@ -24,11 +26,32 @@ public class Character : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.UpArrow))
         {
-            jump = 10.0f;
+            jump = 8.0f;
         }
 
         transform.position += jump * transform.up * Time.deltaTime;
         jump *= 0.98f;
 
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "Stage")
+        {
+            Debug.Log("Stage");
+        }
+
+        if (collision.gameObject.name == "goal")
+        {
+            Debug.Log("goal");
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D coll)
+    {
+        if (coll.gameObject.name == "waterCollider")
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
     }
 }
