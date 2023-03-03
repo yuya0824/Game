@@ -58,3 +58,6 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+clone/Library/
+clone/Logs/
+clone/obj/
