@@ -7,6 +7,10 @@ public class Character : MonoBehaviour
     float speed = 5.0f;
     float jump = 0.0f;
 
+
+    bool waterture = true;
+    int touchCount = 0;
+
     public GameObject Water;
 
     // Update is called once per frame
@@ -47,11 +51,19 @@ public class Character : MonoBehaviour
         }
     }
 
-    void OnTriggerStay2D(Collider2D coll)
+    void OnTriggerEnter2D(Collider2D coll)
     {
-        if (coll.gameObject.name == "waterCollider")
+
+        if (coll.gameObject.name == "waterCollider" && waterture != false)
         {
             transform.localScale = new Vector3(1, 1, 1);
+
+            if (touchCount == 3)
+            {
+                waterture = false;
+            }
+
+            touchCount += 1;
         }
     }
 }
